@@ -146,6 +146,7 @@ main { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
 .accent-ember { --accent: var(--ember); --accent-text: #f2a191; }
 .accent-steel { --accent: var(--steel); --accent-text: #a3b5ff; }
 .accent-teal  { --accent: var(--teal); --accent-text: #5fd6bd; }
+.accent-rose  { --accent: #c48ab4; --accent-text: #eab6da; }
 
 /* panels */
 .card { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line);

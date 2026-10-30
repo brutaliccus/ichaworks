@@ -27,7 +27,7 @@ const GH = 'https://github.com/brutaliccus';
  * gold = LootLock gold, brass = LootLock/IchaLaunch brass, green = Icha's Armory green,
  * ember = Freilifts oxblood, steel = Library blue, teal = Freilifts "finish" teal.
  */
-export type Accent = 'gold' | 'brass' | 'green' | 'ember' | 'steel' | 'teal';
+export type Accent = 'gold' | 'brass' | 'green' | 'ember' | 'steel' | 'teal' | 'rose';
 
 export interface ProjectLink {
   label: string;
@@ -188,6 +188,11 @@ export const showcase: Slide[] = [
     tags: ['Fitness', 'Self-hosted', 'Auth'],
     accent: 'ember',
     links: [{ label: 'Visit site', href: 'https://health.freiverse.com', kind: 'live' }],
+    gallery: [
+      { src: '/shots/freilifts-m-workouts.webp', caption: 'Workout log', alt: 'Freilifts on a phone: the workout log calendar with last workout summary, and an active workout with timer' },
+      { src: '/shots/freilifts-m-food-programs.webp', caption: 'Food log · Programs', alt: 'Freilifts on a phone: the food log calendar, and built-in training programs such as StrongLifts 5x5' },
+      { src: '/shots/freilifts-m-records-progress.webp', caption: 'Records · Progress', alt: 'Freilifts on a phone: personal records by muscle group, and my progress with weekly set volume and a calories chart' },
+    ],
   },
   {
     id: 'library',
@@ -198,16 +203,38 @@ export const showcase: Slide[] = [
     tags: ['Python', 'Audiobooks', 'Self-hosted'],
     accent: 'steel',
     links: [
-      { label: 'Visit site', href: 'https://library.freiverse.com', kind: 'live' },
+      { label: 'Visit site', href: 'https://lastlibrary.app', kind: 'live' },
       { label: 'GitHub repo', href: `${GH}/Library`, kind: 'repo' },
     ],
     gallery: [
-      { src: '/shots/library.jpg', caption: 'Choose a library', alt: 'Library app choose-a-library screen' },
-      { src: '/shots/library-audiobooks.webp', caption: 'Audiobooks', alt: 'Library My Library audiobooks tab with Continue Listening and a shelf of audiobook covers' },
-      { src: '/shots/library-ebooks.webp', caption: 'eBooks', alt: 'Library My Library eBooks tab with a shelf of eBook covers' },
-      { src: '/shots/library-browse.webp', caption: 'Browse', alt: 'Library Browse page with genre sidebar, catalog search and cover badge legend' },
-      { src: '/shots/library-requests.webp', caption: 'Requests', alt: 'Library My Requests page with per-book download, metadata, M4B and chapter progress steps' },
-      { src: '/shots/library-libraries.webp', caption: 'Libraries', alt: 'Library Your Libraries screen with The Last Library saved on the device' },
+      { src: '/shots/library-v2-my-library-audiobooks.webp', caption: 'Audiobooks', alt: 'Library My Library audiobooks tab with Continue Listening and a shelf of audiobook covers' },
+      { src: '/shots/library-v2-ebooks.webp', caption: 'eBooks', alt: 'Library My Library eBooks tab with a shelf of eBook covers' },
+      { src: '/shots/library-v2-browse.webp', caption: 'Browse', alt: 'Library Browse page with genre sidebar, catalog search and cover badge legend' },
+      { src: '/shots/library-v2-requests.webp', caption: 'Requests', alt: 'Library My Requests page with per-book download, metadata, M4B and chapter progress steps' },
+      { src: '/shots/library-v2-libraries.webp', caption: 'Libraries', alt: 'Library Choose a library screen with The Last Library saved on the device' },
+      { src: '/shots/library-m-mylibrary.webp', caption: 'Mobile: My Library', alt: 'Library on a phone: My Library audiobooks and eBooks tabs' },
+      { src: '/shots/library-m-browse-requests.webp', caption: 'Mobile: Browse', alt: 'Library on a phone: Browse, My Requests and Choose a library screens' },
+    ],
+  },
+  {
+    id: 'buba',
+    title: 'BUBA',
+    blurb:
+      'A web and Android app for tracking nursing and breast milk storage: feeds, pumped milk by bag in the fridge or freezer, diapers, medicine reminders and growth for the whole household. Built with React, Vite, Firebase and Capacitor.',
+    image: '/shots/buba-card.webp',
+    imageAlt: 'BUBA on three phones: the home dashboard, the feeding timeline and milk storage',
+    tags: ['React', 'Firebase', 'Capacitor'],
+    accent: 'rose',
+    links: [
+      { label: 'Visit site', href: 'https://freifeed.freiverse.com/', kind: 'live' },
+      { label: 'GitHub repo', href: `${GH}/Freifeed`, kind: 'repo' },
+    ],
+    gallery: [
+      { src: '/shots/buba-pair-signin-home.webp', caption: 'Sign-in · Home', alt: 'BUBA on two phones: the Google sign-in screen and the home dashboard with each baby and milk on hand (demo data)' },
+      { src: '/shots/buba-pair-nursing-timeline.webp', caption: 'Nursing · Timeline', alt: 'BUBA on two phones: the nursing log with side and timer, and the daily feeding timeline per baby and pump (demo data)' },
+      { src: '/shots/buba-pair-milk.webp', caption: 'Milk storage', alt: 'BUBA on two phones: refrigerated and frozen milk bags with days left (demo data)' },
+      { src: '/shots/buba-pair-diapers-medicine.webp', caption: 'Diapers · Medicine', alt: 'BUBA on two phones: the diaper timeline and a daily medicine reminder (demo data)' },
+      { src: '/shots/buba-pair-notes-measurements.webp', caption: 'Notes · Growth', alt: 'BUBA on two phones: appointments, reminders and notes, and growth measurements per baby (demo data)' },
     ],
   },
   {
@@ -227,7 +254,7 @@ export const showcase: Slide[] = [
 export const hostedSites: HostedSite[] = [
   {
     id: 'ichasarmory',
-    name: 'ichasarmory.quest',
+    name: "Icha's Armory",
     url: 'https://ichasarmory.quest',
     blurb: 'Turtle WoW armory and tank sim.',
     image: '/shots/ichasarmory.jpg',
@@ -245,7 +272,7 @@ export const hostedSites: HostedSite[] = [
   },
   {
     id: 'lootlock',
-    name: 'lootlock.win',
+    name: 'LootLock',
     url: 'https://lootlock.win',
     blurb: 'Soft-reserve raid loot, locked before the pull.',
     image: '/shots/lootlock.jpg',
@@ -253,7 +280,7 @@ export const hostedSites: HostedSite[] = [
   },
   {
     id: 'health',
-    name: 'health.freiverse.com',
+    name: 'Freilifts',
     url: 'https://health.freiverse.com',
     blurb: 'Freilifts: an exercise log for lifters.',
     image: '/shots/health.jpg',
@@ -261,12 +288,21 @@ export const hostedSites: HostedSite[] = [
   },
   {
     id: 'library',
-    name: 'library.freiverse.com',
-    url: 'https://library.freiverse.com',
+    name: 'Last Library',
+    url: 'https://lastlibrary.app',
     blurb: 'Self-hosted audiobooks and eBooks.',
     image: '/shots/library.jpg',
     accent: 'steel',
     repo: `${GH}/Library`,
+  },
+  {
+    id: 'buba',
+    name: 'BUBA',
+    url: 'https://freifeed.freiverse.com/',
+    blurb: 'Nursing and breast milk storage tracker for the web and Android.',
+    image: '/shots/buba-card.webp',
+    accent: 'rose',
+    repo: `${GH}/Freifeed`,
   },
 ];
 
