@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Slide } from '../data/projects';
+import type { GalleryImage, Slide } from '../data/projects';
 import { Chevron, GitHubIcon, GlobeIcon } from './Icons';
 
 const AUTOPLAY_MS = 6500;
@@ -24,6 +24,45 @@ export function Placeholder({ title, note, accent }: { title: string; note?: str
       <span className="ph-title">{title}</span>
       {note && <span className="ph-note">{note}</span>}
     </div>
+  );
+}
+
+function SlideGallery({ title, images, eager }: { title: string; images: GalleryImage[]; eager: boolean }) {
+  const [active, setActive] = useState(0);
+  const cur = images[active];
+  return (
+    <>
+      <div className="titlebar" aria-hidden="true">
+        <span>{title} · {cur.caption} <span className="tb-count">{active + 1}/{images.length}</span></span><i />
+      </div>
+      <div className="gallery-main">
+        <img
+          key={cur.src}
+          className={`fit-${cur.fit ?? 'contain'}`}
+          src={cur.src}
+          alt={cur.alt}
+          width={1440}
+          height={900}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      </div>
+      <div className="thumbs" role="group" aria-label={`${title} screenshots`}>
+        {images.map((g, n) => (
+          <button
+            key={g.src}
+            type="button"
+            className={`thumb-btn ${n === active ? 'active' : ''}`}
+            onClick={() => setActive(n)}
+            aria-label={`Show ${title} screenshot ${n + 1} of ${images.length}: ${g.caption}`}
+            aria-pressed={n === active}
+          >
+            <img src={g.src} alt="" width={96} height={60} loading="lazy" decoding="async" />
+            <span className="thumb-cap" aria-hidden="true">{g.caption}</span>
+          </button>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -86,11 +125,17 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
               inert={i !== index}
             >
               <div className="slide-media">
-                <div className="titlebar" aria-hidden="true"><span>{s.title}</span><i /></div>
-                {s.image ? (
-                  <img src={s.image} alt={s.imageAlt} width={1440} height={900} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                {s.gallery && s.gallery.length > 0 ? (
+                  <SlideGallery title={s.title} images={s.gallery} eager={i === 0} />
                 ) : (
-                  <Placeholder title={s.title} note={s.placeholderNote} accent={s.accent} />
+                  <>
+                    <div className="titlebar" aria-hidden="true"><span>{s.title}</span><i /></div>
+                    {s.image ? (
+                      <img src={s.image} alt={s.imageAlt} width={1440} height={900} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                    ) : (
+                      <Placeholder title={s.title} note={s.placeholderNote} accent={s.accent} />
+                    )}
+                  </>
                 )}
               </div>
               <div className="slide-body">
@@ -106,7 +151,7 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
                       {l.label}<span className="sr-only"> for {s.title} (opens in new tab)</span>
                     </a>
                   ))}
-                  {s.links.length === 0 && <span className="muted-pill">Links coming soon</span>}
+                  {s.links.length === 0 && <span className="muted-pill">{s.noLinksNote ?? 'Links coming soon'}</span>}
                 </div>
               </div>
             </article>

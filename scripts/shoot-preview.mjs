@@ -26,9 +26,23 @@ for (const [name, opts] of shots) {
   await page.waitForTimeout(300);
   await page.screenshot({ path: `shots/${name}-sites.png` });
   await page.evaluate(() => document.querySelector('#works')?.scrollIntoView());
-  await page.getByRole('button', { name: 'Go to slide 6: IchaUI Forever' }).click();
-  await page.waitForTimeout(400);
-  await page.screenshot({ path: `shots/${name}-carousel-slide6.png` });
+  const slideShot = async (title, file, thumb) => {
+    await page.evaluate(() => document.querySelector('#works')?.scrollIntoView());
+    await page.getByRole('button', { name: new RegExp(`^Go to slide \\d+: ${title}$`) }).click();
+    await page.waitForTimeout(500);
+    if (thumb) {
+      await page.getByRole('button', { name: new RegExp(`^Show ${title} screenshot .*: ${thumb}$`) }).click();
+      await page.waitForTimeout(400);
+    }
+    await page.screenshot({ path: `shots/${name}-carousel-${file}.png` });
+  };
+  await slideShot('IchaUI', 'ichaui');
+  await slideShot('IchaUI', 'ichaui-hero', 'Hero setup');
+  await slideShot('IchaLaunch', 'ichalaunch');
+  await slideShot('IchaLaunch', 'ichalaunch-addons', 'Addons');
+  await slideShot('TypeWrite', 'typewrite');
+  await slideShot('TypeWrite', 'typewrite-corkboard', 'Corkboard');
+  await slideShot('IchaUI Forever', 'ichaui-forever');
   await ctx.close();
 }
 await browser.close();

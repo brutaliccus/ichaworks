@@ -7,6 +7,11 @@
  *
  * Screenshots live in /public/shots and are refreshed with:
  *   node scripts/capture-sites.mjs
+ * Gallery images (real captures only, never generated):
+ *   ichaui-*      from the IchaUI repo, docs/screenshots (in-game captures + preview renders)
+ *   ichalaunch-*  from the IchaLaunch repo, docs/screenshots (transparent margins trimmed)
+ *   typewrite-*   captured with Playwright from TypeWrite running locally against
+ *                 Firebase emulators, with a demo account and demo manuscript
  * Repo descriptions came from the public GitHub API (api.github.com/repos/brutaliccus/<name>);
  * refresh them with: node scripts/fetch-repos.mjs
  *
@@ -29,6 +34,15 @@ export interface ProjectLink {
   kind: 'live' | 'repo';
 }
 
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  /** Short label shown on the thumbnail strip / under the image. */
+  caption: string;
+  /** Gallery images letterbox by default ('contain'); 'cover' fills the 16:10 frame. */
+  fit?: 'cover' | 'contain';
+}
+
 export interface Slide {
   id: string;
   title: string;
@@ -41,6 +55,10 @@ export interface Slide {
   links: ProjectLink[];
   /** Short note shown on placeholder art (e.g. why there's no screenshot). */
   placeholderNote?: string;
+  /** Text for the pill shown when there are no links (default "Links coming soon"). */
+  noLinksNote?: string;
+  /** Extra screenshots; when set, the slide shows a thumbnail strip and `image` is ignored. */
+  gallery?: GalleryImage[];
 }
 
 export interface HostedSite {
@@ -104,6 +122,59 @@ export const showcase: Slide[] = [
     tags: ['Web app', 'Raid tools', 'Addon sync'],
     accent: 'gold',
     links: [{ label: 'Visit site', href: 'https://lootlock.win', kind: 'live' }],
+  },
+  {
+    id: 'ichaui',
+    title: 'IchaUI',
+    blurb:
+      'A complete UI suite for Vanilla WoW 1.12 and Turtle WoW: action bars and drawers, hero bars, unit and party frames, a Shaman totem bar, minimap shapes, XP/rep bars, and Smart Tab & Smart Mark.',
+    image: '/shots/ichaui-overview.webp',
+    imageAlt: 'IchaUI in game',
+    tags: ['Lua', 'WoW addon', 'Turtle WoW'],
+    accent: 'brass',
+    links: [{ label: 'GitHub repo', href: `${GH}/IchaUI`, kind: 'repo' }],
+    gallery: [
+      { src: '/shots/ichaui-overview.webp', caption: 'In game', alt: 'IchaUI in game in the Barrens: player frame, action bars, chat and minimap' },
+      { src: '/shots/ichaui-unit-frames.webp', caption: 'Unit frames', alt: 'IchaUI player, target and target-of-target frames with circular portraits' },
+      { src: '/shots/ichaui-hero-setup.webp', caption: 'Hero setup', alt: 'IchaUI Hero setup window assigning several shock spells to one hero button' },
+      { src: '/shots/ichaui-config-frames.webp', caption: 'Frame config', alt: 'IchaUI unit frame settings with live preview, portrait, cast bar and buff options' },
+      { src: '/shots/ichaui-button-shapes.webp', caption: 'Button shapes', alt: 'Preview render of every IchaUI button and drawer shape' },
+    ],
+  },
+  {
+    id: 'ichalaunch',
+    title: 'IchaLaunch',
+    blurb:
+      'A themed game launcher: guided client install, an addon catalog with one-click installs and updates, client mod and HD patch presets, and PLAY with pre-launch checks.',
+    image: '/shots/ichalaunch-home.webp',
+    imageAlt: 'IchaLaunch home tab',
+    tags: ['Launcher', 'Addon manager', 'Windows'],
+    accent: 'steel',
+    links: [{ label: 'GitHub repo', href: `${GH}/IchaLaunch`, kind: 'repo' }],
+    gallery: [
+      { src: '/shots/ichalaunch-home.webp', caption: 'Home', alt: 'IchaLaunch home tab listing installed client mods next to a news slideshow and the PLAY button' },
+      { src: '/shots/ichalaunch-addons.webp', caption: 'Addons', alt: 'IchaLaunch addons tab with the available catalog and installed addons' },
+      { src: '/shots/ichalaunch-client.webp', caption: 'Client mods', alt: 'IchaLaunch client tab with preset bundles of fixes, tweaks and patches' },
+      { src: '/shots/ichalaunch-settings.webp', caption: 'Settings', alt: 'IchaLaunch settings tab with game location and AddOns folder' },
+    ],
+  },
+  {
+    id: 'typewrite',
+    title: 'TypeWrite',
+    blurb:
+      'A cloud writing studio for fiction authors: a Scrivener-style binder, rich manuscript editor, outline and corkboard views, character and world bibles, and export to Word, EPUB and PDF. Syncs with Firebase; desktop builds via Tauri.',
+    image: '/shots/typewrite-editor.webp',
+    imageAlt: 'TypeWrite manuscript editor',
+    tags: ['TypeScript', 'Writing', 'Private'],
+    accent: 'gold',
+    links: [],
+    noLinksNote: 'Private repo · no public link',
+    gallery: [
+      { src: '/shots/typewrite-editor.webp', caption: 'Editor', alt: 'TypeWrite manuscript editor with the binder, formatting toolbar and a demo chapter' },
+      { src: '/shots/typewrite-corkboard.webp', caption: 'Corkboard', alt: 'TypeWrite corkboard of chapter and scene index cards with synopses' },
+      { src: '/shots/typewrite-outline.webp', caption: 'Outline', alt: 'TypeWrite outline view with synopsis, POV and location for each chapter and scene' },
+      { src: '/shots/typewrite-char.webp', caption: 'Characters', alt: 'TypeWrite character sheet for a primary character' },
+    ],
   },
   {
     id: 'freilifts',
@@ -211,6 +282,14 @@ export const repos: Repo[] = [
     language: 'Launcher',
     accent: 'steel',
     url: `${GH}/IchaLaunch`,
+  },
+  {
+    name: 'TypeWrite',
+    description:
+      'Cloud writing studio for fiction authors: binder, rich manuscript editor and Firebase sync. The repo is private, so this card has no link.',
+    language: 'TypeScript',
+    accent: 'gold',
+    badge: 'Private',
   },
   {
     name: 'IchasArmory',
