@@ -123,6 +123,13 @@ export const showcase: Slide[] = [
     tags: ['Web app', 'Raid tools', 'Addon sync'],
     accent: 'gold',
     links: [{ label: 'Visit site', href: 'https://lootlock.win', kind: 'live' }],
+    gallery: [
+      { src: '/shots/lootlock-dashboard.webp', caption: 'Dashboard', alt: 'LootLock dashboard with the events list, a Create Raid panel and the characters list' },
+      { src: '/shots/lootlock-me-characters.webp', caption: 'Characters', alt: 'LootLock characters page with SR+ bonuses per character and a strip of recent raids' },
+      { src: '/shots/lootlock-raid-loot.webp', caption: 'Raid loot', alt: 'LootLock raid page for City of Dalaran with the loot table and per-item reserve buttons by boss' },
+      { src: '/shots/lootlock-raid-roster.webp', caption: 'Raid roster', alt: 'LootLock raid roster listing each character, spec and their reserved items' },
+      { src: '/shots/lootlock-m-home-events.webp', caption: 'Mobile', alt: 'LootLock on two phones: the Create or join a raid screen and the events list' },
+    ],
   },
   {
     id: 'ichaui',
