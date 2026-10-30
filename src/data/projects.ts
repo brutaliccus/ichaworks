@@ -201,6 +201,14 @@ export const showcase: Slide[] = [
       { label: 'Visit site', href: 'https://library.freiverse.com', kind: 'live' },
       { label: 'GitHub repo', href: `${GH}/Library`, kind: 'repo' },
     ],
+    gallery: [
+      { src: '/shots/library.jpg', caption: 'Choose a library', alt: 'Library app choose-a-library screen' },
+      { src: '/shots/library-audiobooks.webp', caption: 'Audiobooks', alt: 'Library My Library audiobooks tab with Continue Listening and a shelf of audiobook covers' },
+      { src: '/shots/library-ebooks.webp', caption: 'eBooks', alt: 'Library My Library eBooks tab with a shelf of eBook covers' },
+      { src: '/shots/library-browse.webp', caption: 'Browse', alt: 'Library Browse page with genre sidebar, catalog search and cover badge legend' },
+      { src: '/shots/library-requests.webp', caption: 'Requests', alt: 'Library My Requests page with per-book download, metadata, M4B and chapter progress steps' },
+      { src: '/shots/library-libraries.webp', caption: 'Libraries', alt: 'Library Your Libraries screen with The Last Library saved on the device' },
+    ],
   },
   {
     id: 'ichaui-forever',
