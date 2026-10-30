@@ -9,7 +9,8 @@
  *   node scripts/capture-sites.mjs
  * Gallery images (real captures only, never generated):
  *   ichaui-*      from the IchaUI repo, docs/screenshots (in-game captures + preview renders)
- *   ichalaunch-*  from the IchaLaunch repo, docs/screenshots (transparent margins trimmed)
+ *   ichalaunch-*  captured from the current launcher build (v1.6.18) running on Linux/Xvfb
+ *                 with a fresh profile: no account, no game folder
  *   typewrite-*   captured with Playwright from TypeWrite running locally against
  *                 Firebase emulators, with a demo account and demo manuscript
  * Repo descriptions came from the public GitHub API (api.github.com/repos/brutaliccus/<name>);
@@ -145,17 +146,18 @@ export const showcase: Slide[] = [
     id: 'ichalaunch',
     title: 'IchaLaunch',
     blurb:
-      'A themed game launcher: guided client install, an addon catalog with one-click installs and updates, client mod and HD patch presets, and PLAY with pre-launch checks.',
+      'A themed game launcher: a first-run setup wizard and guided client install, an addon catalog with one-click installs and updates, client mod and HD patch presets, in-launcher news and release notes, and PLAY with pre-launch checks.',
     image: '/shots/ichalaunch-home.webp',
     imageAlt: 'IchaLaunch home tab',
-    tags: ['Launcher', 'Addon manager', 'Windows'],
+    tags: ['Launcher', 'Addon manager', 'Windows + Linux'],
     accent: 'steel',
     links: [{ label: 'GitHub repo', href: `${GH}/IchaLaunch`, kind: 'repo' }],
     gallery: [
-      { src: '/shots/ichalaunch-home.webp', caption: 'Home', alt: 'IchaLaunch home tab listing installed client mods next to a news slideshow and the PLAY button' },
-      { src: '/shots/ichalaunch-addons.webp', caption: 'Addons', alt: 'IchaLaunch addons tab with the available catalog and installed addons' },
-      { src: '/shots/ichalaunch-client.webp', caption: 'Client mods', alt: 'IchaLaunch client tab with preset bundles of fixes, tweaks and patches' },
-      { src: '/shots/ichalaunch-settings.webp', caption: 'Settings', alt: 'IchaLaunch settings tab with game location and AddOns folder' },
+      { src: '/shots/ichalaunch-home.webp', caption: 'Home', alt: 'IchaLaunch home tab with the What\'s New notes for 1.6.18 beside the rotating news art and the INSTALL button' },
+      { src: '/shots/ichalaunch-addons.webp', caption: 'Addons', alt: 'IchaLaunch addons tab with the searchable catalog of 483 addons, download counts and install buttons' },
+      { src: '/shots/ichalaunch-client.webp', caption: 'Client mods', alt: 'IchaLaunch client tab with client-mod presets from Basic to HD AIO and Enhanced, plus category tabs' },
+      { src: '/shots/ichalaunch-settings.webp', caption: 'Settings', alt: 'IchaLaunch settings tab with game location, AddOns folder and update options' },
+      { src: '/shots/ichalaunch-onboarding.webp', caption: 'Setup wizard', alt: 'IchaLaunch first-run setup wizard welcome screen with Install Now' },
     ],
   },
   {
