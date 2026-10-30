@@ -112,6 +112,11 @@ export const showcase: Slide[] = [
       { label: 'Open planner', href: 'https://ichasarmory.quest/gear-planner', kind: 'live' },
       { label: 'GitHub repo', href: `${GH}/IchasArmory`, kind: 'repo' },
     ],
+    gallery: [
+      { src: '/shots/gear-planner-icha.webp', caption: "Ichabaddie's 2H Mace Pre-Raid BIS", alt: "Icha's Armory Gear Planner on desktop showing the Ichabaddie's 2H Mace Pre-Raid BIS plan with Locations Needed and Modified Stats" },
+      { src: '/shots/gear-planner-icha-mobile.webp', caption: "Ichabaddie's 2H Mace Pre-Raid BIS", alt: "Icha's Armory Gear Planner on a phone showing the Ichabaddie's 2H Mace Pre-Raid BIS plan with its gear list" },
+      { src: '/shots/gear-planner.jpg', caption: 'Gear Planner', alt: "Icha's Armory Gear Planner with its equipment slots, Locations Needed and Modified Stats panels" },
+    ],
   },
   {
     id: 'lootlock',
