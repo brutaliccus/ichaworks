@@ -3,11 +3,8 @@
  * Edit these values before deploying.
  */
 
-/**
- * PLACEHOLDER — replace with your real Buy Me a Coffee page URL
- * (e.g. "https://buymeacoffee.com/<your-handle>").
- */
-export const BMC_URL = 'https://buymeacoffee.com/REPLACE_ME';
+/** Buy Me a Coffee page. */
+export const BMC_URL = 'https://buymeacoffee.com/jeb32411u';
 
 /** True while BMC_URL still points at the placeholder above. */
 export const BMC_IS_PLACEHOLDER = BMC_URL.includes('REPLACE_ME');
