@@ -47,6 +47,8 @@ export interface GalleryImage {
 export interface Slide {
   id: string;
   title: string;
+  /** Show the title in its own casing in uppercase titlebars. */
+  keepCase?: boolean;
   blurb: string;
   /** Path under /public, or null to render a styled placeholder. */
   image: string | null;
@@ -240,11 +242,12 @@ export const showcase: Slide[] = [
   },
   {
     id: 'buba',
-    title: 'BUBA',
+    title: 'Buba',
+    keepCase: true,
     blurb:
       'A web and Android app for tracking nursing and breast milk storage: feeds, pumped milk by bag in the fridge or freezer, diapers, medicine reminders and growth for the whole household. Built with React, Vite, Firebase and Capacitor.',
     image: '/shots/buba-card.webp',
-    imageAlt: 'BUBA on three phones: the home dashboard, the feeding timeline and milk storage',
+    imageAlt: 'Buba on three phones: the home dashboard, the feeding timeline and milk storage',
     tags: ['React', 'Firebase', 'Capacitor'],
     accent: 'rose',
     links: [
@@ -252,12 +255,12 @@ export const showcase: Slide[] = [
       { label: 'GitHub repo', href: `${GH}/Freifeed`, kind: 'repo' },
     ],
     gallery: [
-      { src: '/shots/buba-card.webp', caption: 'Home · Timeline · Milk', alt: 'BUBA on three phones: the home dashboard, the feeding timeline and milk storage' },
-      { src: '/shots/buba-pair-nursing-timeline.webp', caption: 'Nursing · Timeline', alt: 'BUBA on two phones: the nursing log with side and timer, and the daily feeding timeline per baby and pump (demo data)' },
-      { src: '/shots/buba-pair-milk.webp', caption: 'Milk storage', alt: 'BUBA on two phones: refrigerated and frozen milk bags with days left (demo data)' },
-      { src: '/shots/buba-pair-diapers-medicine.webp', caption: 'Diapers · Medicine', alt: 'BUBA on two phones: the diaper timeline and a daily medicine reminder (demo data)' },
-      { src: '/shots/buba-pair-notes-measurements.webp', caption: 'Notes · Growth', alt: 'BUBA on two phones: appointments, reminders and notes, and growth measurements per baby (demo data)' },
-      { src: '/shots/buba-pair-signin-home.webp', caption: 'Sign-in · Home', alt: 'BUBA on two phones: the Google sign-in screen and the home dashboard with each baby and milk on hand (demo data)' },
+      { src: '/shots/buba-card.webp', caption: 'Home · Timeline · Milk', alt: 'Buba on three phones: the home dashboard, the feeding timeline and milk storage' },
+      { src: '/shots/buba-pair-nursing-timeline.webp', caption: 'Nursing · Timeline', alt: 'Buba on two phones: the nursing log with side and timer, and the daily feeding timeline per baby and pump (demo data)' },
+      { src: '/shots/buba-pair-milk.webp', caption: 'Milk storage', alt: 'Buba on two phones: refrigerated and frozen milk bags with days left (demo data)' },
+      { src: '/shots/buba-pair-diapers-medicine.webp', caption: 'Diapers · Medicine', alt: 'Buba on two phones: the diaper timeline and a daily medicine reminder (demo data)' },
+      { src: '/shots/buba-pair-notes-measurements.webp', caption: 'Notes · Growth', alt: 'Buba on two phones: appointments, reminders and notes, and growth measurements per baby (demo data)' },
+      { src: '/shots/buba-pair-signin-home.webp', caption: 'Sign-in · Home', alt: 'Buba on two phones: the Google sign-in screen and the home dashboard with each baby and milk on hand (demo data)' },
     ],
   },
   {
@@ -320,7 +323,7 @@ export const hostedSites: HostedSite[] = [
   },
   {
     id: 'buba',
-    name: 'BUBA',
+    name: 'Buba',
     url: 'https://freifeed.freiverse.com/',
     blurb: 'Nursing and breast milk storage tracker for the web and Android.',
     image: '/shots/buba-card.webp',

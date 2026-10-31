@@ -27,13 +27,13 @@ export function Placeholder({ title, note, accent }: { title: string; note?: str
   );
 }
 
-function SlideGallery({ title, images, eager }: { title: string; images: GalleryImage[]; eager: boolean }) {
+function SlideGallery({ title, images, eager, keepCase }: { title: string; images: GalleryImage[]; eager: boolean; keepCase?: boolean }) {
   const [active, setActive] = useState(0);
   const cur = images[active];
   return (
     <>
       <div className="titlebar" aria-hidden="true">
-        <span>{title} · {cur.caption} <span className="tb-count">{active + 1}/{images.length}</span></span><i />
+        <span><span className={keepCase ? 'keep-case' : undefined}>{title}</span> · {cur.caption} <span className="tb-count">{active + 1}/{images.length}</span></span><i />
       </div>
       <div className="gallery-main">
         <img
@@ -126,10 +126,10 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
             >
               <div className="slide-media">
                 {s.gallery && s.gallery.length > 0 ? (
-                  <SlideGallery title={s.title} images={s.gallery} eager={i === 0} />
+                  <SlideGallery title={s.title} images={s.gallery} eager={i === 0} keepCase={s.keepCase} />
                 ) : (
                   <>
-                    <div className="titlebar" aria-hidden="true"><span>{s.title}</span><i /></div>
+                    <div className="titlebar" aria-hidden="true"><span className={s.keepCase ? 'keep-case' : undefined}>{s.title}</span><i /></div>
                     {s.image ? (
                       <img src={s.image} alt={s.imageAlt} width={1440} height={900} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
                     ) : (
