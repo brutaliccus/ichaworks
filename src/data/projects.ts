@@ -390,8 +390,8 @@ export const repos: Repo[] = [
   },
   {
     name: 'IchaMog',
-    description: 'Transmog Collection Tracker for HellscreamWoW',
-    language: 'Lua',
+    description: 'Valheim transmog mod: change your armor\'s look while keeping its stats.',
+    language: 'C#',
     accent: 'brass',
     url: `${GH}/IchaMog`,
   },
