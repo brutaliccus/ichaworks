@@ -364,7 +364,7 @@ export const repos: Repo[] = [
     badge: 'Private',
   },
   {
-    name: 'IchasArmory',
+    name: "Icha's Armory",
     description: 'Turtle WoW Armory and Tank Sim',
     language: 'JavaScript',
     accent: 'green',
@@ -396,7 +396,7 @@ export const repos: Repo[] = [
     url: `${GH}/IchaMog`,
   },
   {
-    name: 'Freifeed',
+    name: 'Buba',
     description: 'Breast Feeding Tracker',
     language: 'TypeScript',
     accent: 'gold',
