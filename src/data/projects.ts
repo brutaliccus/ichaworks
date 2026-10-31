@@ -410,13 +410,6 @@ export const repos: Repo[] = [
     url: `${GH}/Library`,
   },
   {
-    name: 'CartPort',
-    description: 'Teleport your cart to you.',
-    language: 'C#',
-    accent: 'teal',
-    url: `${GH}/CartPort`,
-  },
-  {
     name: 'ClassicWoWClassIcons_Circle_HighRes',
     description:
       'A math based recreation of classic WoW Class Icons for use on fan projects like Discord and personal websites/products.',
