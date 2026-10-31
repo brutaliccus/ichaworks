@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { GalleryImage, Slide } from '../data/projects';
 import { Chevron, GitHubIcon, GlobeIcon } from './Icons';
+import Lightbox from './Lightbox';
 
 const AUTOPLAY_MS = 6500;
 
@@ -27,7 +28,7 @@ export function Placeholder({ title, note, accent }: { title: string; note?: str
   );
 }
 
-function SlideGallery({ title, images, eager, keepCase }: { title: string; images: GalleryImage[]; eager: boolean; keepCase?: boolean }) {
+function SlideGallery({ title, images, eager, keepCase, onOpen }: { title: string; images: GalleryImage[]; eager: boolean; keepCase?: boolean; onOpen: (i: number) => void }) {
   const [active, setActive] = useState(0);
   const cur = images[active];
   return (
@@ -35,7 +36,7 @@ function SlideGallery({ title, images, eager, keepCase }: { title: string; image
       <div className="titlebar" aria-hidden="true">
         <span><span className={keepCase ? 'keep-case' : undefined}>{title}</span> · {cur.caption} <span className="tb-count">{active + 1}/{images.length}</span></span><i />
       </div>
-      <div className="gallery-main">
+      <button type="button" className="gallery-main zoomable" onClick={() => onOpen(active)} aria-label={`Open larger view: ${title}, ${cur.caption}`}>
         <img
           key={cur.src}
           className={`fit-${cur.fit ?? 'contain'}`}
@@ -46,7 +47,7 @@ function SlideGallery({ title, images, eager, keepCase }: { title: string; image
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
         />
-      </div>
+      </button>
       <div className="thumbs" role="group" aria-label={`${title} screenshots`}>
         {images.map((g, n) => (
           <button
@@ -73,6 +74,8 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const touchX = useRef<number | null>(null);
+  const [lightbox, setLightbox] = useState<{ title: string; keepCase?: boolean; images: GalleryImage[]; start: number } | null>(null);
+  const closeLightbox = useCallback(() => setLightbox(null), []);
   const count = slides.length;
 
   const go = useCallback((i: number) => setIndex(((i % count) + count) % count), [count]);
@@ -84,10 +87,10 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
   }, [reduced]);
 
   useEffect(() => {
-    if (!playing || hovered || focused) return;
+    if (!playing || hovered || focused || lightbox) return;
     const t = window.setTimeout(next, AUTOPLAY_MS);
     return () => window.clearTimeout(t);
-  }, [playing, hovered, focused, next]);
+  }, [playing, hovered, focused, lightbox, next]);
 
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
@@ -126,12 +129,14 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
             >
               <div className="slide-media">
                 {s.gallery && s.gallery.length > 0 ? (
-                  <SlideGallery title={s.title} images={s.gallery} eager={i === 0} keepCase={s.keepCase} />
+                  <SlideGallery title={s.title} images={s.gallery} eager={i === 0} keepCase={s.keepCase} onOpen={(start) => setLightbox({ title: s.title, keepCase: s.keepCase, images: s.gallery!, start })} />
                 ) : (
                   <>
                     <div className="titlebar" aria-hidden="true"><span className={s.keepCase ? 'keep-case' : undefined}>{s.title}</span><i /></div>
                     {s.image ? (
-                      <img src={s.image} alt={s.imageAlt} width={1440} height={900} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                      <button type="button" className="zoomable" onClick={() => setLightbox({ title: s.title, keepCase: s.keepCase, images: [{ src: s.image!, alt: s.imageAlt, caption: s.title }], start: 0 })} aria-label={`Open larger view: ${s.title}`}>
+                        <img src={s.image} alt={s.imageAlt} width={1440} height={900} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                      </button>
                     ) : (
                       <Placeholder title={s.title} note={s.placeholderNote} accent={s.accent} />
                     )}
@@ -177,6 +182,7 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
           {playing ? 'Pause' : 'Play'}<span className="sr-only"> slideshow autoplay</span>
         </button>
       </div>
+      {lightbox && <Lightbox {...lightbox} onClose={closeLightbox} />}
     </section>
   );
 }
