@@ -98,6 +98,17 @@ export const showcase: Slide[] = [
       { label: 'Visit site', href: 'https://ichasarmory.quest', kind: 'live' },
       { label: 'GitHub repo', href: `${GH}/IchasArmory`, kind: 'repo' },
     ],
+    gallery: [
+      { src: '/shots/ichasarmory.jpg', caption: 'Home', alt: "Icha's Armory home page with the character import form", fit: 'contain' },
+      { src: '/shots/armory-full-gear.webp', caption: 'Enhancement Shaman gear', alt: "Icha's Armory character page with a full Enhancement Shaman gear set and stat breakdown", fit: 'contain' },
+      { src: '/shots/armory-full-talents.webp', caption: 'Talents', alt: "Icha's Armory talents tab with Elemental, Enhancement and Restoration trees filled in", fit: 'contain' },
+      { src: '/shots/armory-full-result-details-1.webp', caption: 'DPS sim: 323 DPS over 10,000 iterations', alt: "Icha's Armory DPS sim result of 323 DPS with the damage breakdown bars", fit: 'contain' },
+      { src: '/shots/armory-full-details-2-bars-timeline.webp', caption: 'Damage breakdown', alt: "Icha's Armory DPS sim damage breakdown bars per ability above the damage timeline", fit: 'contain' },
+      { src: '/shots/armory-full-details-table-1-auto-attack.webp', caption: 'Auto attack breakdown', alt: "Icha's Armory auto attack breakdown table with crit, glancing, hit, miss and dodge counts", fit: 'contain' },
+      { src: '/shots/armory-full-details-table-4-stormstrike.webp', caption: 'Stormstrike breakdown', alt: "Icha's Armory Stormstrike breakdown table with hit and crit counts and damage", fit: 'contain' },
+      { src: '/shots/armory-full-details-3-timelines.webp', caption: 'Damage and uptime timelines', alt: "Icha's Armory DPS sim damage timeline chart and buff and proc uptime timeline", fit: 'contain' },
+      { src: '/shots/armory-full-distribution.webp', caption: 'DPS distribution', alt: "Icha's Armory DPS sim distribution histogram of runs by DPS", fit: 'contain' },
+    ],
   },
   {
     id: 'gear-planner',
