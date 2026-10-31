@@ -220,7 +220,7 @@ export const showcase: Slide[] = [
   },
   {
     id: 'library',
-    title: 'Library',
+    title: 'Last Library',
     blurb: 'A self-hosted audiobook and eBook app. Join a library with an invite link and listen anywhere.',
     image: '/shots/library-v2-my-library-audiobooks.webp',
     imageAlt: 'Library My Library audiobooks tab with Continue Listening and a shelf of audiobooks',
@@ -403,7 +403,7 @@ export const repos: Repo[] = [
     url: `${GH}/Freifeed`,
   },
   {
-    name: 'Library',
+    name: 'Last Library',
     description: 'A Self Hosted Audiobook and eBook application.',
     language: 'Python',
     accent: 'steel',
